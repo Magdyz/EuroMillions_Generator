@@ -6,18 +6,18 @@ function createRandomNum( n ) {
     return random
 }
 
-function generateNums (){
+function generateNums (firstNumbersCount,secondNumbersCount){
     let newNum = [];
     let luckyNum = [];
 
     for (let i = 0 ; i < 5 ; i ++){
-        newNum.push( createRandomNum (50) );
+        newNum.push( createRandomNum (firstNumbersCount) );
     }
 
     for (let i = 0 ; i < 2 ; i ++){
-        firstPick = createRandomNum (12);
+        firstPick = createRandomNum (secondNumbersCount);
         if (luckyNum.includes( firstPick )){
-            firstPick = createRandomNum (12);
+            firstPick = createRandomNum (secondNumbersCount);
             luckyNum.push( firstPick );
         } else {
             luckyNum.push( firstPick );
@@ -25,7 +25,12 @@ function generateNums (){
     }
 
   // combine two lists
-    return newNum.concat(luckyNum)
+    return newNum.concat( luckyNum ) ;
 }
 
-// console.log(generateNums())
+const euroMillionsMain = generateNums ( 50 , 12 ).slice ( 0 , 5 );
+const euroMillionsLucky = generateNums ( 50 , 12 ).slice ( 5 , 8 );
+
+let euroMillions = "First number: "+(euroMillionsMain.toString()) + ' ' + "\nLucky number: " + euroMillionsLucky.toString() 
+
+console.log(euroMillions)
