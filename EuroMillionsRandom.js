@@ -9,6 +9,10 @@ function createRandomNum( n ) {
 function generateNums (firstNumbersCount,secondNumbersCount){
     let newNum = [];
     let luckyNum = [];
+    
+    if (typeof(secondNumbersCount)=='undefined'){
+      secondNumbersCount = 0;
+    }
 
     for (let i = 0 ; i < 5 ; i ++){
         newNum.push( createRandomNum (firstNumbersCount) );
@@ -28,9 +32,18 @@ function generateNums (firstNumbersCount,secondNumbersCount){
     return newNum.concat( luckyNum ) ;
 }
 
-const euroMillionsMain = generateNums ( 50 , 12 ).slice ( 0 , 5 );
-const euroMillionsLucky = generateNums ( 50 , 12 ).slice ( 5 , 8 );
+// use function customised for each game
+// for euro millions slice five numbers and last two for lucky nums
 
-let euroMillions = "First number: "+(euroMillionsMain.toString()) + ' ' + "\nLucky number: " + euroMillionsLucky.toString() 
+const euroMillionsMain = generateNums ( 50 , 12 ).slice ( 0 , 5 ).toLocaleString();
+const euroMillionsLucky = generateNums ( 50 , 12 ).slice ( 5 , 8 ).toLocaleString();
 
-console.log(euroMillions)
+// for lotto there arent any lucky nums
+
+const lottoNumbers = generateNums ( 59 ).slice ( 0 , 6 ).toLocaleString();
+
+
+let lotto = "Lotto Numbers: "+lottoNumbers;
+let euroMillions = "EuroMillions number: " + euroMillionsMain + ' ' + "\nLucky number: " + euroMillionsLucky
+
+console.log(lotto + "\n" + euroMillions)
